@@ -20,11 +20,12 @@ def download_random_comic():
     return comic['alt']
 
 
-def send_comic(image_path):
+def send_comic(image_path, comic_alt):
     with open(image_path, 'rb') as image:
         bot.send_photo(
             chat_id=chat_id,
-            photo=image
+            photo=image,
+            caption=comic_alt
         )
 
 
@@ -39,6 +40,6 @@ if __name__ == '__main__':
 
     try:
         comic_alt = download_random_comic()
-        send_comic(image_path)
+        send_comic(image_path, comic_alt)
     finally:
         os.remove(image_path)
